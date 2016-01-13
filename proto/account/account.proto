@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+service Account {
+	rpc Read(ReadRequest) returns (ReadResponse) {}
+	rpc Create(CreateRequest) returns (CreateResponse) {}
+	rpc Update(UpdateRequest) returns (UpdateResponse) {}
+	rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+	rpc Search(SearchRequest) returns (SearchResponse) {}
+}
+
+message Record {
+	// uuid
+	string id = 1;
+	// service or user
+	string type = 2;
+	string client_id = 3;
+	// we leave this blank in responses
+	// used for update and create
+	string client_secret = 4;
+	// we leave this blank
+	map<string,string> metadata = 5;
+	int64 created = 6;
+	int64 updated = 7;
+}
+
+message ReadRequest {
+	string id = 1;
+}
+
+message ReadResponse {
+	Record account = 1;
+}
+
+message CreateRequest {
+	// If id is blank, one will be generated
+	Record account = 1;
+}
+
+message CreateResponse {
+}
+
+message UpdateRequest {
+	// Id and client_id cannot be changed
+	Record account = 1;
+}
+
+message UpdateResponse {
+}
+
+message DeleteRequest {
+	string id = 1;
+}
+
+message DeleteResponse {
+}
+
+message SearchRequest {
+	string client_id = 1;
+	string type = 2;
+	int64 limit = 3;
+	int64 offset = 4;
+}
+
+message SearchResponse {
+	repeated Record accounts = 1;
+}

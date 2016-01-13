@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+service Oauth2 {
+	rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse) {}
+	rpc Token(TokenRequest) returns (TokenResponse) {}
+}
+
+message Token {
+	string access_token = 1;
+	string token_type = 2;
+	string refresh_token = 3;
+	int64 expires_in = 4;
+	int64 expires_at = 5;
+	repeated string scopes = 6;
+}
+
+message AuthorizeRequest {
+	// code, token
+	string response_type = 1;
+	string client_id = 2;
+	repeated string scopes = 3;
+	string state = 4;
+	string redirect_uri = 5;
+}
+
+message AuthorizeResponse {
+	string code = 1;
+	string state = 2;
+
+	// implicit response
+	Token token = 3;
+}
+
+message TokenRequest {
+	string client_id = 1;
+	string client_secret = 2;
+	string code = 3;
+	// password, client_credentials, authorization_code, refresh_token
+	string grant_type = 4;
+	string redirect_uri = 5;
+	string refresh_token = 6;
+	
+}
+
+message TokenResponse {
+	Token token = 1;
+}
