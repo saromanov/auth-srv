@@ -3,19 +3,21 @@ syntax = "proto3";
 service Oauth2 {
 	rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse) {}
 	rpc Token(TokenRequest) returns (TokenResponse) {}
+	rpc Revoke(RevokeRequest) returns (RevokeResponse) {}
 }
 
 message Token {
 	string access_token = 1;
 	string token_type = 2;
 	string refresh_token = 3;
-	int64 expires_in = 4;
-	int64 expires_at = 5;
-	repeated string scopes = 6;
+	int64 expires_at = 4;
+	repeated string scopes = 5;
+	// metadata associated with the token
+	map<string,string> metadata = 6;
 }
 
 message AuthorizeRequest {
-	// code, token
+	// code, token (not supported)
 	string response_type = 1;
 	string client_id = 2;
 	repeated string scopes = 3;
@@ -35,13 +37,24 @@ message TokenRequest {
 	string client_id = 1;
 	string client_secret = 2;
 	string code = 3;
-	// password, client_credentials, authorization_code, refresh_token
+	// password (not supported), client_credentials, authorization_code, refresh_token
 	string grant_type = 4;
 	string redirect_uri = 5;
 	string refresh_token = 6;
-	
+
+	// scopes can be added for client_credentials request
+	repeated string scopes = 7;
+	// metadata to be stored with a token that's generated
+	map<string, string> metadata = 8;
 }
 
 message TokenResponse {
 	Token token = 1;
+}
+
+message RevokeRequest {
+	string access_token = 1;
+}
+
+message RevokeResponse {
 }

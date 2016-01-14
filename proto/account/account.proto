@@ -13,13 +13,15 @@ message Record {
 	string id = 1;
 	// service or user
 	string type = 2;
+	// service name, username, etc
 	string client_id = 3;
 	// we leave this blank in responses
 	// used for update and create
 	string client_secret = 4;
-	// we leave this blank
 	map<string,string> metadata = 5;
+	// unix timestamp
 	int64 created = 6;
+	// unix timestamp
 	int64 updated = 7;
 }
 

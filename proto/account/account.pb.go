@@ -42,15 +42,17 @@ type Record struct {
 	// uuid
 	Id string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
 	// service or user
-	Type     string `protobuf:"bytes,2,opt,name=type" json:"type,omitempty"`
+	Type string `protobuf:"bytes,2,opt,name=type" json:"type,omitempty"`
+	// service name, username, etc
 	ClientId string `protobuf:"bytes,3,opt,name=client_id" json:"client_id,omitempty"`
 	// we leave this blank in responses
 	// used for update and create
-	ClientSecret string `protobuf:"bytes,4,opt,name=client_secret" json:"client_secret,omitempty"`
-	// we leave this blank
-	Metadata map[string]string `protobuf:"bytes,5,rep,name=metadata" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Created  int64             `protobuf:"varint,6,opt,name=created" json:"created,omitempty"`
-	Updated  int64             `protobuf:"varint,7,opt,name=updated" json:"updated,omitempty"`
+	ClientSecret string            `protobuf:"bytes,4,opt,name=client_secret" json:"client_secret,omitempty"`
+	Metadata     map[string]string `protobuf:"bytes,5,rep,name=metadata" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	// unix timestamp
+	Created int64 `protobuf:"varint,6,opt,name=created" json:"created,omitempty"`
+	// unix timestamp
+	Updated int64 `protobuf:"varint,7,opt,name=updated" json:"updated,omitempty"`
 }
 
 func (m *Record) Reset()                    { *m = Record{} }
