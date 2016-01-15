@@ -5,6 +5,25 @@ It also provides a mechanism for managing role based authorization.
 
 Auth server currently implement Oauth2.
 
+Implemented security features
+
+* [x] [No Cleartext Storage of Credentials](https://tools.ietf.org/html/rfc6819#section-5.1.4.1.3)
+* [x] [Encryption of Credentials](https://tools.ietf.org/html/rfc6819#section-5.1.4.1.4)
+* [x] [Use Short Expiration Time](https://tools.ietf.org/html/rfc6819#section-5.1.5.3)
+* [ ] [Limit Number of Usages or One-Time Usage](https://tools.ietf.org/html/rfc6819#section-5.1.5.4)
+* [x] [Bind Token to Client id](https://tools.ietf.org/html/rfc6819#section-5.1.5.8)
+* [ ] [Automatic Revocation of Derived Tokens If Abuse Is Detected](https://tools.ietf.org/html/rfc6819#section-5.2.1.1)
+* [x] [Binding of Refresh Token to "client_id"](https://tools.ietf.org/html/rfc6819#section-5.2.2.2)
+* [x] [Refresh Token Rotation](https://tools.ietf.org/html/rfc6819#section-5.2.2.3)
+* [x] [Revocation of Refresh Tokens](https://tools.ietf.org/html/rfc6819#section-5.2.2.4)
+* [ ] [Validate Pre-Registered "redirect_uri"](https://tools.ietf.org/html/rfc6819#section-5.2.3.5)
+* [x] [Binding of Authorization "code" to "client_id"](https://tools.ietf.org/html/rfc6819#section-5.2.4.4)
+* [x] [Binding of Authorization "code" to "redirect_uri"](https://tools.ietf.org/html/rfc6819#section-5.2.4.6)
+* [x] [Opaque access tokens](https://tools.ietf.org/html/rfc6749#section-1.4)
+* [x] [Opaque refresh tokens](https://tools.ietf.org/html/rfc6749#section-1.5)
+* [x] [Ensure Confidentiality of Requests](https://tools.ietf.org/html/rfc6819#section-5.1.1)
+  * ensures that redirect URIs use https **except localhost**
+
 ## Getting started
 
 1. Install Consul

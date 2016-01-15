@@ -238,6 +238,24 @@ func (o *Oauth2) Token(ctx context.Context, req *oauth2.TokenRequest, rsp *oauth
 
 func (o *Oauth2) Revoke(ctx context.Context, req *oauth2.RevokeRequest, rsp *oauth2.RevokeResponse) error {
 	// Who should be allowed to do this?
+
+	if len(req.RefreshToken) > 0 {
+		token, _, err := db.ReadRefresh(req.RefreshToken)
+		if err != nil {
+			if err == db.ErrNotFound {
+				return errors.BadRequest("go.micro.srv.auth", "invalid_request")
+			} else {
+				return errors.InternalServerError("go.micro.srv.auth", "server_error")
+			}
+		}
+
+		if err := db.DeleteToken(req.AccessToken); err != nil {
+			return errors.InternalServerError("go.micro.srv.auth", "server_error")
+		}
+
+		req.AccessToken = token.AccessToken
+	}
+
 	if len(req.AccessToken) == 0 {
 		return errors.BadRequest("go.micro.srv.auth", "invalid_request")
 	}

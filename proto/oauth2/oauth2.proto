@@ -53,7 +53,10 @@ message TokenResponse {
 }
 
 message RevokeRequest {
+	// revoke access token
 	string access_token = 1;
+	// revoke via refresh token
+	string refresh_token = 2;
 }
 
 message RevokeResponse {
