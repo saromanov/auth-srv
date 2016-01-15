@@ -4,6 +4,7 @@ service Oauth2 {
 	rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse) {}
 	rpc Token(TokenRequest) returns (TokenResponse) {}
 	rpc Revoke(RevokeRequest) returns (RevokeResponse) {}
+	rpc Introspect(IntrospectRequest) returns (IntrospectResponse) {}
 }
 
 message Token {
@@ -60,4 +61,13 @@ message RevokeRequest {
 }
 
 message RevokeResponse {
+}
+
+message IntrospectRequest {
+	string access_token = 1;
+}
+
+message IntrospectResponse {
+	Token token = 1;
+	bool active = 2;
 }

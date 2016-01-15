@@ -200,9 +200,8 @@ func (o *Oauth2) Token(ctx context.Context, req *oauth2.TokenRequest, rsp *oauth
 		if err != nil {
 			if err == db.ErrNotFound {
 				return errors.BadRequest("go.micro.srv.auth", "invalid_request")
-			} else {
-				return errors.InternalServerError("go.micro.srv.auth", "server_error")
 			}
+			return errors.InternalServerError("go.micro.srv.auth", "server_error")
 		}
 
 		// client id does not match for refresh token
@@ -244,9 +243,8 @@ func (o *Oauth2) Revoke(ctx context.Context, req *oauth2.RevokeRequest, rsp *oau
 		if err != nil {
 			if err == db.ErrNotFound {
 				return errors.BadRequest("go.micro.srv.auth", "invalid_request")
-			} else {
-				return errors.InternalServerError("go.micro.srv.auth", "server_error")
 			}
+			return errors.InternalServerError("go.micro.srv.auth", "server_error")
 		}
 
 		if err := db.DeleteToken(req.AccessToken); err != nil {
@@ -264,5 +262,33 @@ func (o *Oauth2) Revoke(ctx context.Context, req *oauth2.RevokeRequest, rsp *oau
 		return errors.InternalServerError("go.micro.srv.auth", "server_error")
 	}
 
+	return nil
+}
+
+func (o *Oauth2) Introspect(ctx context.Context, req *oauth2.IntrospectRequest, rsp *oauth2.IntrospectResponse) error {
+	// Who should be allowed to do this?
+
+	if len(req.AccessToken) == 0 {
+		return errors.BadRequest("go.micro.srv.auth", "invalid_request")
+	}
+
+	token, _, err := db.ReadToken(req.AccessToken)
+	if err != nil {
+		if err == db.ErrNotFound {
+			rsp.Active = false
+			return nil
+		}
+		return errors.InternalServerError("go.micro.srv.auth", "server_error")
+	}
+
+	if d := time.Now().Unix() - token.ExpiresAt; d > 0 {
+		rsp.Active = false
+		return nil
+	}
+
+	rsp.Token = token
+	rsp.Active = true
+	// should we really hand this over?
+	rsp.Token.RefreshToken = ""
 	return nil
 }
