@@ -65,6 +65,7 @@ Oauth2
 - Authorize
 - Token
 - Revoke
+- Introspect
 
 ### Account.Create
 
@@ -125,3 +126,4 @@ icro query go.micro.srv.auth Oauth2.Token '{"client_id": "asim", "client_secret"
 ```shell
 micro query go.micro.srv.auth Oauth2.Revoke '{"access_token": "V2swWmtsRm50WEtKSDhXSEtFdVlCNUo1WG5iTk9BYjh1dUVnT0JlOW9DS2FjWFg3c1FCaHBDbWFpaUhtQVUxUw=="}'
 ```
+
