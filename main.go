@@ -5,8 +5,8 @@ import (
 	"github.com/micro/auth-srv/db"
 	"github.com/micro/auth-srv/db/mysql"
 	"github.com/micro/auth-srv/handler"
-	"github.com/micro/auth-srv/proto/account"
-	"github.com/micro/auth-srv/proto/oauth2"
+	account "github.com/micro/auth-srv/proto/account"
+	oauth2 "github.com/micro/auth-srv/proto/oauth2"
 	"github.com/micro/cli"
 	"github.com/micro/go-micro"
 )

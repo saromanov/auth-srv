@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package go.micro.srv.auth.oauth2;
+
 service Oauth2 {
 	rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse) {}
 	rpc Token(TokenRequest) returns (TokenResponse) {}

@@ -10,8 +10,8 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/micro/auth-srv/db"
-	"github.com/micro/auth-srv/proto/account"
-	"github.com/micro/auth-srv/proto/oauth2"
+	account "github.com/micro/auth-srv/proto/account"
+	oauth2 "github.com/micro/auth-srv/proto/oauth2"
 )
 
 var (

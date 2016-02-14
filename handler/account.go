@@ -10,7 +10,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/context"
 
-	"github.com/micro/auth-srv/proto/account"
+	account "github.com/micro/auth-srv/proto/account"
 )
 
 const (
