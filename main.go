@@ -1,7 +1,8 @@
 package main
 
 import (
-	log "github.com/golang/glog"
+	"log"
+
 	"github.com/micro/auth-srv/db"
 	"github.com/micro/auth-srv/db/mysql"
 	"github.com/micro/auth-srv/handler"
