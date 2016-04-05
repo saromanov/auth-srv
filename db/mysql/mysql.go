@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	Url = "root@tcp(127.0.0.1:3306)/auth"
+	Url = "haunted@root(127.0.0.1:3306)/auth"
 
 	database string
 

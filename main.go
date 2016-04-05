@@ -3,11 +3,13 @@ package main
 import (
 	"log"
 
-	"github.com/micro/auth-srv/db"
-	"github.com/micro/auth-srv/db/mysql"
-	"github.com/micro/auth-srv/handler"
-	account "github.com/micro/auth-srv/proto/account"
-	oauth2 "github.com/micro/auth-srv/proto/oauth2"
+	"github.com/saromanov/auth-srv/db"
+	"github.com/saromanov/auth-srv/db/mysql"
+	"github.com/saromanov/auth-srv/handler"
+	"github.com/saromanov/auth-srv/restful"
+	account "github.com/saromanov/auth-srv/proto/account"
+	oauth2 "github.com/saromanov/auth-srv/proto/oauth2"
+	""
 	"github.com/micro/cli"
 	"github.com/micro/go-micro"
 )
@@ -33,6 +35,9 @@ func main() {
 	// initialise service
 	service.Init()
 
+	// init restful api
+	go restful.Init()
+
 	// register account handler
 	account.RegisterAccountHandler(service.Server(), new(handler.Account))
 	// register oauth2 handler
@@ -40,10 +45,10 @@ func main() {
 
 	// initialise database
 	if err := db.Init(); err != nil {
-		log.Fatal(err)
+		log.Fatal("DB INIT: ", err)
 	}
 
 	if err := service.Run(); err != nil {
-		log.Fatal(err)
+		log.Fatal("Service run: ", err)
 	}
 }
