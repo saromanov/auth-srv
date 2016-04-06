@@ -9,13 +9,13 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/micro/auth-srv/db"
-	account "github.com/micro/auth-srv/proto/account"
-	oauth2 "github.com/micro/auth-srv/proto/oauth2"
+	"github.com/saromanov/auth-srv/db"
+	account "github.com/saromanov/auth-srv/proto/account"
+	oauth2 "github.com/saromanov/auth-srv/proto/oauth2"
 )
 
 var (
-	Url = "haunted@root(127.0.0.1:3306)/auth"
+	Url = "root@root(127.0.0.1:3306)/auth"
 
 	database string
 

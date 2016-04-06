@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/micro/auth-srv/db"
-	oauth2 "github.com/micro/auth-srv/proto/oauth2"
+	"github.com/saromanov/auth-srv/db"
+	oauth2 "github.com/saromanov/auth-srv/proto/oauth2"
 	"github.com/micro/go-micro/errors"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/context"

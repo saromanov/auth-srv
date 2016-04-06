@@ -6,8 +6,8 @@ import (
 	"errors"
 	"time"
 
-	account "github.com/micro/auth-srv/proto/account"
-	oauth2 "github.com/micro/auth-srv/proto/oauth2"
+	account "github.com/saromanov/auth-srv/proto/account"
+	oauth2 "github.com/saromanov/auth-srv/proto/oauth2"
 )
 
 type DB interface {

@@ -9,7 +9,6 @@ import (
 	"github.com/saromanov/auth-srv/restful"
 	account "github.com/saromanov/auth-srv/proto/account"
 	oauth2 "github.com/saromanov/auth-srv/proto/oauth2"
-	""
 	"github.com/micro/cli"
 	"github.com/micro/go-micro"
 )

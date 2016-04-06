@@ -4,13 +4,13 @@ import (
 	"encoding/base64"
 	"strings"
 
-	"github.com/micro/auth-srv/db"
+	"github.com/saromanov/auth-srv/db"
 	"github.com/micro/go-micro/errors"
 	"github.com/pborman/uuid"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/context"
 
-	account "github.com/micro/auth-srv/proto/account"
+	account "github.com/saromanov/auth-srv/proto/account"
 )
 
 const (
