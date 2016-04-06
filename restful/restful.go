@@ -8,8 +8,8 @@ import (
 
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-web"
-	"github.com/saromanov/auth-srv/proto/account"
-	"github.com/saromanov/auth-srv/proto/oauth2"
+	account "github.com/saromanov/auth-srv/proto/account"
+	oauth2 "github.com/saromanov/auth-srv/proto/oauth2"
 
 	"golang.org/x/net/context"
 )
@@ -22,6 +22,7 @@ var (
 )
 
 func Create(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var req account.CreateRequest
 	var err error
 	//Trying to decode request body
@@ -53,6 +54,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func Auth(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var req oauth2.AuthorizeRequest
 	var err error
 	//Trying to decode request body
@@ -84,6 +86,7 @@ func Auth(w http.ResponseWriter, r *http.Request) {
 }
 
 func Token(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var req oauth2.TokenRequest
 	var err error
 	//Trying to decode request body
@@ -114,7 +117,7 @@ func Token(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, string(result))
 }
 
-func InitRestful() {
+func Init() {
 	service := web.NewService(
 		web.Name("go.micro.srv.auth"),
 	)
@@ -124,6 +127,7 @@ func InitRestful() {
 	// setup Greeter Server Client
 	cl = account.NewAccountClient("go.micro.srv.auth", client.DefaultClient)
 
+	http.HandleFunc("/auth", Create)
 	http.HandleFunc("/auth/authorize", Auth)
 	http.HandleFunc("/auth/token", Token)
 	http.ListenAndServe(":8082", nil)

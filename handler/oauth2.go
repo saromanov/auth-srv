@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/micro/auth-srv/db"
-	oauth2 "github.com/micro/auth-srv/proto/oauth2"
+	"github.com/saromanov/auth-srv/db"
+	oauth2 "github.com/saromanov/auth-srv/proto/oauth2"
 	"github.com/micro/go-micro/errors"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/context"
@@ -265,7 +265,7 @@ func (o *Oauth2) Revoke(ctx context.Context, req *oauth2.RevokeRequest, rsp *oau
 	return nil
 }
 
-func (o *Oauth2) Introspect(ctx context.Context, req *oauth2.IntrospectRequest, rsp *oauth2.IntrospectResponse) error {
+func (o *Oauth2) Validate(ctx context.Context, req *oauth2.ValidateRequest, rsp *oauth2.ValidateResponse) error {
 	// Who should be allowed to do this?
 
 	if len(req.AccessToken) == 0 {
