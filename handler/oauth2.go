@@ -265,7 +265,7 @@ func (o *Oauth2) Revoke(ctx context.Context, req *oauth2.RevokeRequest, rsp *oau
 	return nil
 }
 
-func (o *Oauth2) Introspect(ctx context.Context, req *oauth2.IntrospectRequest, rsp *oauth2.IntrospectResponse) error {
+func (o *Oauth2) Validate(ctx context.Context, req *oauth2.ValidateRequest, rsp *oauth2.ValidateResponse) error {
 	// Who should be allowed to do this?
 
 	if len(req.AccessToken) == 0 {
